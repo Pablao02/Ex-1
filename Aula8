@@ -1,0 +1,46 @@
+class Departamento:
+    def __init__(self, nome, sigla):
+        self.nome = nome
+        self.sigla = sigla
+        self.professores = []
+
+    @classmethod
+    def criar_departamento_exatas(cls, nome):
+        return cls(nome, "EXA")
+
+    @classmethod
+    def criar_departamento_humanas(cls, nome):
+        return cls(nome, "HUM")
+
+    def adicionar_professor(self, professor):
+        self.professores.append(professor)
+
+    def listar_professores(self):
+        if not self.professores:
+            print(f"O departamento {self.nome} ainda não possui professores cadastrados.")
+        else:
+            print(f"Professores do departamento {self.nome}:")
+            for prof in self.professores:
+                print(f"- {prof}")
+
+
+# ================================
+# EXEMPLO DE USO (igual ao enunciado)
+# ================================
+
+if __name__ == "__main__":
+    dept_exatas = Departamento.criar_departamento_exatas("Matemática e Computação")
+    dept_humanas = Departamento.criar_departamento_humanas("Letras e Filosofia")
+
+    print(f"Departamento: {dept_exatas.nome} - Sigla: {dept_exatas.sigla}")
+    print(f"Departamento: {dept_humanas.nome} - Sigla: {dept_humanas.sigla}")
+
+    # Adicionando professores
+    dept_exatas.adicionar_professor("Carlos Almeida")
+    dept_exatas.adicionar_professor("Fernanda Torres")
+
+    dept_humanas.adicionar_professor("João Barreto")
+
+    # Listando
+    dept_exatas.listar_professores()
+    dept_humanas.listar_professores()
