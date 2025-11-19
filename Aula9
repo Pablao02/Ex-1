@@ -1,0 +1,42 @@
+Exercício 09 - Polimorfismo (Diferentes Formas)
+
+Objetivo
+
+Demonstrar como diferentes objetos respondem de maneiras únicas ao mesmo método.
+
+do
+
+Implemente o polimorfismo através do método apresentar()em diferentes classes.
+
+Requisitos:
+
+-se de que as aulas certifique-se de que Aluno , Professor e Funcionário possuam o método apresentar().
+
+Cada classe deve implementar o método de forma específica:
+
+Aluno : deve dizer "Olá, sou o aluno [nome] e estudo no curso [curso]."
+Professor : deve dizer "Olá, sou o professor [nome] e leciono no departamento [departamento]."
+Funcionário : deve dizer "Olá, sou o funcionário [nome] e minha carga é [carga]."
+Crie uma lista contendo objetos de Aluno, Professor e Funcionário.
+
+Percorra a lista e chame o método apresentar()para cada objeto, demonstrando polimorfismo.
+
+Entrega
+
+Crie um arquivo chamado respExercicio09.pycom a implementação do polimorfismo.
+
+Exemplo de Uso
+
+pessoas = [
+    Aluno("João Silva", "2023001", "Engenharia de Software"),
+    Professor("Dr. Maria", "Computação", 8000.0),
+    Funcionario("Carlos Santos", "123.456.789-00", "01/01/1980", "Secretário", 3000.0)
+]
+
+for pessoa in pessoas:
+    print(pessoa.apresentar())
+Exemplo de rato Esperada
+
+Olá, sou o aluno João Silva e estudo no curso Engenharia de Software.
+Olá, sou o professor Dr. Maria e leciono no departamento Computação.
+Olá, sou o funcionário Carlos
