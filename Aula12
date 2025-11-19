@@ -1,0 +1,62 @@
+from abc import ABC, abstractmethod
+
+# ================================
+# Princípio Aberto/Fechado (OCP)
+# ================================
+
+class CalculadorDesconto(ABC):
+    """Classe abstrata — define a interface para descontos."""
+    
+    @abstractmethod
+    def calcular(self, valor):
+        pass
+
+
+class DescontoEstudante(CalculadorDesconto):
+    def calcular(self, valor):
+        return valor * 0.90  # 10% de desconto
+
+
+class DescontoFuncionario(CalculadorDesconto):
+    def calcular(self, valor):
+        return valor * 0.85  # 15% de desconto
+
+
+class DescontoVIP(CalculadorDesconto):
+    def calcular(self, valor):
+        return valor * 0.80  # 20% de desconto
+
+
+class ProcessadorPagamento:
+    """Classe fechada para modificação, mas aberta para extensão via novos descontos."""
+    
+    def processar(self, valor, calculadora_desconto: CalculadorDesconto):
+        return calculadora_desconto.calcular(valor)
+
+
+# ================================
+# Demonstração
+# ================================
+if __name__ == "__main__":
+    pagamento = ProcessadorPagamento()
+    valor_original = 1000.0
+
+    desconto_estudante = DescontoEstudante()
+    desconto_funcionario = DescontoFuncionario()
+    desconto_vip = DescontoVIP()
+
+    print("=== Valores com Descontos ===")
+    print(f"Estudante: R$ {pagamento.processar(valor_original, desconto_estudante):.2f}")
+    print(f"Funcionário: R$ {pagamento.processar(valor_original, desconto_funcionario):.2f}")
+    print(f"VIP: R$ {pagamento.processar(valor_original, desconto_vip):.2f}")
+
+
+    # ============================
+    # NOVO DESCONTO ADICIONADO (SEM ALTERAR CÓDIGO EXISTENTE)
+    # ============================
+    class DescontoBlackFriday(CalculadorDesconto):
+        def calcular(self, valor):
+            return valor * 0.50  # 50% de desconto
+
+    desconto_bf = DescontoBlackFriday()
+    print(f"Black Friday: R$ {pagamento.processar(valor_original, desconto_bf):.2f}")
